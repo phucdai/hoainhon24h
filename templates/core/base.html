@@ -1,0 +1,302 @@
+{% load static %}
+{% load weathertags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block title %}
+    {% endblock %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'core/images/icons/24-icon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/css/util.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'core/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<div class="topbar">
+				<div class="content-topbar container h-100">
+					<div class="left-topbar">
+						<span class="left-topbar-item flex-wr-s-c">
+							<span>
+								Hoài Nhơn
+							</span>
+							{% Weather as weather %}
+							<img class="m-b-1 m-rl-8" src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="IMG" style="width:35px">
+							<span>
+								Sáng: {{ weather.temp_max }}°C / Tối:  {{ weather.temp_min }}°C
+							</span>
+						</span>
+					</div>
+
+					<div class="right-topbar">
+						<a href="#">
+							<span class="fab fa-facebook-f"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-twitter"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-youtube"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Header Mobile -->
+			<div class="wrap-header-mobile">
+				<!-- Logo moblie -->
+				<div class="logo-mobile">
+					<a href="{% url 'core:home' %}"><img src="{% static 'core/images/quynhon.png' %}" alt="IMG-LOGO"></a>
+				</div>
+
+				<!-- Button show menu -->
+				<div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</div>
+			</div>
+
+			<!-- Menu Mobile -->
+			<div class="menu-mobile">
+				<ul class="topbar-mobile">
+					<li class="left-topbar">
+                        <span class="left-topbar-item flex-wr-s-c">
+							<span>
+								Hoài Nhơn
+							</span>
+
+							<img class="m-b-1 m-rl-8" src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="IMG" style="width:35px">
+
+							<span>
+								Sáng: {{ weather.temp_max }}°C / Tối:  {{ weather.temp_min }}°C
+							</span>
+						</span>
+					</li>
+
+					<li class="right-topbar">
+						<a href="#">
+							<span class="fab fa-facebook-f"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-twitter"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-youtube"></span>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="main-menu-m">
+					<li>
+						<a href="{% url 'core:home' %}">Home</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'hoai-nhon' %}">Hoài Nhơn</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'thoi-su' %}">Thời sự </a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'am-thuc' %}">Ẩm thực</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'the-thao' %}">Thể thao</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'doi-song' %}">Đời sống</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'giai-tri' %}">Giải trí</a>
+					</li>
+
+					<li>
+						<a href="{% url 'core:category' 'tuyen-dung' %}">Tuyển dụng</a>
+					</li>
+				</ul>
+			</div>
+
+			<!--  -->
+			<div class="wrap-logo container">
+				<!-- Logo desktop -->
+				<div class="logo">
+					<a href="{% url 'core:home' %}"><img src="{% static 'core/images/quynhon.png' %}" alt="LOGO"></a>
+				</div>
+
+				<!-- Banner -->
+				<div class="banner-header">
+					<a href="#"><img src="images/banner-01.jpg" alt="IMG"></a>
+				</div>
+			</div>
+
+			<!--  -->
+			<div class="wrap-main-nav">
+				<div class="main-nav">
+					<!-- Menu desktop -->
+					<nav class="menu-desktop">
+						<a class="logo-stick" href="{% url 'core:home' %}">
+							<img src="{% static 'core/images/quynhon.png' %}" alt="LOGO">
+						</a>
+
+						<ul class="main-menu">
+							<li class="
+								{% if request.resolver_match.url_name == 'home' %}
+									main-menu-active
+								{% endif %}
+							">
+								<a href="{% url 'core:home' %}">Home</a>
+							</li>
+
+							<li class="{% if title.slug == 'hoai-nhon' %}
+								main-menu-active
+								{% endif %}
+							">
+								<a href="{% url 'core:category' 'hoai-nhon' %}">Hoài Nhơn</a>
+							</li>
+
+							<li class="{% if title.slug == 'thoi-su' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'thoi-su' %}">Thời sự </a>
+							</li>
+
+							<li class="{% if title.slug == 'am-thuc' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'am-thuc' %}">Ẩm thực</a>
+							</li>
+
+							<li class="{% if title.slug == 'the-thao' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'the-thao' %}">Thể thao</a>
+							</li>
+
+							<li class="{% if title.slug == 'doi-song' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'doi-song' %}">Đời sống</a>
+							</li>
+
+							<li class="{% if title.slug == 'giai-tri' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'giai-tri' %}">Giải trí</a>
+							</li>
+
+							<li class="{% if title.slug == 'tuyen-dung' %}
+								main-menu-active
+								{% endif %}">
+								<a href="{% url 'core:category' 'tuyen-dung' %}">Tuyển dụng</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+
+    {% block content %}
+
+    {% endblock %}
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer-bor bg0 p-t-40 p-b-25">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<a href="{% url 'core:home' %}">
+								<img class="max-s-full" src="{% static 'core/images/quynhon.png' %}" alt="LOGO">
+							</a>
+						</div>
+
+						<div>
+							<p class="f1-s-1 cl1 p-b-16">
+								Website được edit bởi Hoài Nhơn Team
+							</p>
+
+							<p class="f1-s-1 cl1 p-b-16">
+								Mọi yêu cầu xin liên hệ: +84 382200122
+							</p>
+
+							<div class="p-t-15">
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-facebook-f"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-twitter"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-pinterest-p"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-vimeo-v"></span>
+								</a>
+
+								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+									<span class="fab fa-youtube"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="fas fa-angle-up"></span>
+		</span>
+	</div>
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'core/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'core/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'core/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'core/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'core/js/main.js' %}"></script>
+
+</body>
+</html>
